@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de gestion de horarios para personal de restaurante">
+    <meta name="theme-color" content="#2c3e50">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Horarios">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/icon-192.svg">
+    <link rel="icon" href="/icons/icon-192.svg" type="image/svg+xml">
+    <title>Gestion de Horarios - Camareros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Gestion de Horarios</h1>
+            <p>Sistema profesional para organizar turnos de camareros</p>
+            <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.7; font-style: italic; letter-spacing: 0.05em;">Sistema creado por LIMATH, Denia Spain</p>
+        </div>
+
+        <div id="migrationBanner" class="migration-banner">
+            <span>📦 Se encontraron datos locales. ¿Deseas migrarlos al servidor?</span>
+            <button class="btn btn-migrate" onclick="migrateLocalData()">Migrar Datos</button>
+            <button class="btn btn-dismiss" onclick="dismissMigration()">Ignorar</button>
+        </div>
+
+        <div class="controls">
+            <div class="input-group">
+                <input type="text" id="newEmployeeName" placeholder="Nombre del camarero" onkeypress="if(event.key==='Enter')addEmployee()">
+                <button class="btn btn-primary" onclick="addEmployee()">➕ Agregar Camarero</button>
+            </div>
+            <button class="btn btn-print" onclick="window.print()">🖨️ Imprimir</button>
+            <button class="btn btn-success" onclick="clearAll()">🗑️ Limpiar Todo</button>
+        </div>
+
+        <div class="week-range-bar no-print">
+            <span class="week-range-label">📅 Semana:</span>
+            <input type="date" id="weekDatePicker" class="week-range-input" onchange="updateWeekRange()">
+            <span id="weekRangeDisplay" class="week-range-display"></span>
+            <div id="syncStatus" class="sync-status">
+                <span class="dot"></span>
+                <span class="text">Conectado</span>
+            </div>
+        </div>
+        <div class="week-range-print" id="weekRangePrint"></div>
+
+        <div class="schedule-grid">
+            <div id="employeeList"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Empleados</h3>
+                <div class="value" id="totalEmployees">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Horas Totales</h3>
+                <div class="value" id="totalHours">0h</div>
+            </div>
+            <div class="stat-card">
+                <h3>Promedio por Camarero</h3>
+                <div class="value" id="avgHours">0h</div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color rest"></div>
+                <span>Descanso</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color normal"></div>
+                <span>Dia Normal (2 turnos partido)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color guard"></div>
+                <span>Guardia (Horario largo corrido)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color single"></div>
+                <span>Turno Unico</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/sw-register.js"></script>
+</body>
+</html>
