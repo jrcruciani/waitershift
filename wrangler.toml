@@ -9,4 +9,4 @@ pages_build_output_dir = "."
 [[d1_databases]]
 binding = "DB"
 database_name = "waitershift-db"
-database_id = "waitershift-db"
+database_id = "5c16b8e8-3afe-40ee-b623-52f108969522"
