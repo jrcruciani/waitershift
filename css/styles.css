@@ -187,6 +187,36 @@ body {
     50% { opacity: 0.3; }
 }
 
+/* Install PWA banner */
+.install-banner {
+    display: none;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+    align-items: center;
+    gap: 15px;
+}
+
+.install-banner.show {
+    display: flex;
+}
+
+.install-banner .btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+.install-banner .btn-install {
+    background: white;
+    color: #667eea;
+}
+
+.install-banner .btn-dismiss {
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
 /* Migration banner */
 .migration-banner {
     display: none;
@@ -577,7 +607,7 @@ body {
         max-width: 100%;
     }
 
-    .controls, .stats, .legend, .delete-btn, .button-row, .employee-actions, .migration-banner, .sync-status {
+    .controls, .stats, .legend, .delete-btn, .button-row, .employee-actions, .migration-banner, .install-banner, .sync-status {
         display: none !important;
     }
 

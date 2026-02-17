@@ -709,21 +709,40 @@ window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
 
+    // Show install banner after a short delay
     setTimeout(() => {
-        if (confirm('¿Deseas instalar la aplicacion de Horarios en tu dispositivo para acceso rapido?')) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('Usuario acepto instalar la app');
-                }
-                deferredPrompt = null;
-            });
-        }
-    }, 3000);
+        const banner = document.getElementById('installBanner');
+        if (banner) banner.classList.add('show');
+    }, 2000);
 });
+
+function installPWA() {
+    const banner = document.getElementById('installBanner');
+    if (!deferredPrompt) {
+        if (banner) banner.classList.remove('show');
+        return;
+    }
+
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+            console.log('Usuario acepto instalar la app');
+        }
+        deferredPrompt = null;
+        if (banner) banner.classList.remove('show');
+    });
+}
+
+function dismissInstall() {
+    const banner = document.getElementById('installBanner');
+    if (banner) banner.classList.remove('show');
+    deferredPrompt = null;
+}
 
 window.addEventListener('appinstalled', () => {
     console.log('App instalada exitosamente');
+    const banner = document.getElementById('installBanner');
+    if (banner) banner.classList.remove('show');
 });
 
 // Start the app

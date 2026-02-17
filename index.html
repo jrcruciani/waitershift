@@ -24,6 +24,12 @@
             <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.7; font-style: italic; letter-spacing: 0.05em;">Sistema creado por LIMATH, Denia Spain</p>
         </div>
 
+        <div id="installBanner" class="install-banner">
+            <span>📲 Instala la app en tu dispositivo para acceso rapido</span>
+            <button class="btn btn-install" onclick="installPWA()">Instalar</button>
+            <button class="btn btn-dismiss" onclick="dismissInstall()">No, gracias</button>
+        </div>
+
         <div id="migrationBanner" class="migration-banner">
             <span>📦 Se encontraron datos locales. ¿Deseas migrarlos al servidor?</span>
             <button class="btn btn-migrate" onclick="migrateLocalData()">Migrar Datos</button>
